@@ -4,37 +4,12 @@
 */
 
 /*
-	To use, make sure that the TemplateDebugger.ds file is included in the 
-	template. This can be done within its own <isscript/> block, or an existing 
-	one. Keep in mind that the include needs to be present before the 
-	TemplateDebugger.debug() method can be utilized. Therefore, it is recommended 
-	that a dedicated <isscript/> block be used, and placed at the top of the 
-	.isml file. It is important to delete these elements once done debugging, to 
-	avoid null reference errors.
-	
-	<iscomment><!-- DELETE AFTER USE: V !!!! --></iscomment>
-	<isscript>var TemplateDebugger = require('int_dev_suite/cartridge/scripts/util/TemplateDebugger.ds');</isscript>
-	<iscomment><!-- DELETE AFTER USE: ^ !!!! --></iscomment>
-	
-	Once the TemplateDebugger.ds file is included, place a TemplateDebugger.debuger() call in any existing <isscript/> bock, or create a dedicated <isscript/> block.
-	Any variable, either in an <isscript/> block, or an <isset/> declaration, that was present before the TemplateDebugger.debug() call will be visible.
-	Multiple TemplateDebugger.debug() calls are required for each individual breakpoint needed.
-	
-	<iscomment><!-- DELETE AFTER USE: V !!!! --></iscomment>
-	<isscript>TemplateDebugger.debug();</isscript>
-	<iscomment><!-- DELETE AFTER USE: ^ !!!! --></iscomment>
-	
-	Once the required tags are in place, add a script debug breakpoint to the 
-	return method, of the exports.debug() method. Run the script debugger, and 
-	navigate to the correct pipeline which will render the .isml file being 
-	debugged.
+	Usage: Place a script debugger breakpoint on the `return` line within the function below. Then call it within a template wherever you need to inspect variables. eg:
 
-	At this point, the debugger should find the hook on the 
-	exports.debug() method. Within the "Debug View" window, it will list the 
-	active breakpoint. From there, click the, "-toplevel-" thread.
-
-	This will open the Template's thread, at which point, the template variables 
-	are visible in the "Variables View" window.
+	    <isset name="pam" value="${pdict.Product.getAvailabilityModel()}" scope="page"/>
+	    <iscomment> DELETE AFTER USE: ^ !!!! </iscomment>
+	    <isscript>require(path/to/TemplateDebugger.ds).debug()</isscript>
+	    <iscomment> DELETE AFTER USE: ^ !!!! </iscomment>
 */
 
 /**
